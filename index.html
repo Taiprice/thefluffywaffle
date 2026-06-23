@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Fluffy Waffle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FFFDF8;
+      --linen:    #F5EDD8;
+      --walnut:   #3B2007;
+      --amber:    #BC9C2F;
+      --amber-lt: #F5C842;
+      --muted:    #6B5B45;
+      --white:    #FFFFFF;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; background: #FFFDF8 !important; }
+
+    body {
+      background: #FFFDF8 !important;
+      color: var(--walnut);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-logo em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--walnut); color: var(--white); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--walnut);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 5%;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--walnut);
+      max-width: 14ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 42ch;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--white);
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--walnut);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border: 1.5px solid var(--amber);
+      color: var(--amber);
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover {
+      background: var(--amber);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* Hero decorative waffle emoji strip */
+    .hero-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--linen), var(--amber), var(--amber-lt), var(--amber), var(--linen));
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 6rem 5%;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--walnut);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.75;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--linen);
+      margin: 0;
+    }
+
+    /* ── OFFERINGS ── */
+    .offerings {
+      background: var(--white);
+    }
+
+    .offerings-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .offerings-header {
+      margin-bottom: 3rem;
+    }
+
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .offering-card {
+      background: var(--cream);
+      border: 1px solid var(--linen);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .offering-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(58, 32, 7, 0.08);
+    }
+
+    .offering-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .offering-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.5rem;
+    }
+
+    .offering-card p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── MENU TEASER ── */
+    .menu-teaser {
+      background: var(--cream);
+    }
+
+    .menu-teaser-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .menu-teaser-header {
+      margin-bottom: 3rem;
+    }
+
+    .menu-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .menu-col-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--linen);
+    }
+
+    .menu-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .menu-item-name {
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--walnut);
+      margin-bottom: 0.2rem;
+    }
+
+    .menu-item-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .menu-cta {
+      text-align: center;
+    }
+
+    /* ── FIND US ── */
+    .find-us {
+      background: var(--walnut);
+      color: var(--cream);
+    }
+
+    .find-us-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .find-us .section-label {
+      color: var(--amber-lt);
+    }
+
+    .find-us .section-heading {
+      color: var(--cream);
+    }
+
+    .find-us .section-sub {
+      color: rgba(255, 253, 248, 0.7);
+    }
+
+    .find-us-header {
+      margin-bottom: 3rem;
+    }
+
+    .markets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .market-card {
+      background: rgba(255, 253, 248, 0.07);
+      border: 1px solid rgba(255, 253, 248, 0.12);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .market-card-day {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .market-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+
+    .market-card p {
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.65);
+    }
+
+    .find-us-note {
+      margin-top: 2.5rem;
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.55);
+    }
+
+    .find-us-note a {
+      color: var(--amber-lt);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img {
+      background: var(--linen);
+      border-radius: 20px;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      overflow: hidden;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    .text-link {
+      color: var(--amber);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+
+    .text-link:hover { color: var(--walnut); }
+
+    /* ── CONTACT CTA ── */
+    .contact-cta {
+      background: var(--linen);
+      text-align: center;
+    }
+
+    .contact-cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .contact-cta .section-heading {
+      margin-bottom: 1rem;
+    }
+
+    .contact-cta .section-sub {
+      max-width: 100%;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--walnut);
+      color: rgba(255, 253, 248, 0.6);
+      padding: 3rem 5%;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .footer-logo em {
+      color: var(--amber-lt);
+      font-style: italic;
+    }
+
+    .footer-tagline {
+      font-size: 0.8125rem;
+      margin-top: 0.35rem;
+      color: rgba(255, 253, 248, 0.45);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.6);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber-lt); }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-socials a {
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.5);
+      border: 1px solid rgba(255, 253, 248, 0.15);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-socials a:hover {
+      color: var(--amber-lt);
+      border-color: var(--amber-lt);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 253, 248, 0.1);
+      padding-top: 1.5rem;
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--linen);
+        padding: 1.5rem 5%;
+        gap: 1.25rem;
+        z-index: 99;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        aspect-ratio: 16/9;
+        font-size: 4rem;
+      }
+
+      section { padding: 4rem 5%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">The Fluffy <em>Waffle</em></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#find-us">Find Us</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Farmers Markets &amp; Festivals</p>
+    <h1>Waffles are a <em>labor of love.</em></h1>
+    <p>Fresh, handcrafted waffles served at markets and festivals near you. Sweet, savory, international — come taste the difference.</p>
+    <div class="hero-actions">
+      <a href="#find-us" class="btn-primary">Find Us This Weekend</a>
+      <a href="#menu" class="btn-ghost">See the Menu</a>
+    </div>
+    <div class="hero-strip"></div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- OFFERINGS -->
+  <section class="offerings">
+    <div class="offerings-inner">
+      <div class="offerings-header">
+        <p class="section-label">What we do</p>
+        <h2 class="section-heading">Come taste the <em>difference.</em></h2>
+        <p class="section-sub">Every waffle is made to order, with ingredients sourced fresh and flavor combinations tested to perfection.</p>
+      </div>
+      <div class="offerings-grid">
+        <div class="offering-card">
+          <div class="offering-icon">🌾</div>
+          <h3>Farmers Markets</h3>
+          <p>Find us at local markets every weekend, serving up fresh waffles made to order right in front of you.</p>
+        </div>
+        <div class="offering-card">
+          <div class="offering-icon">🎪</div>
+          <h3>Festivals &amp; Events</h3>
+          <p>From food festivals to community fairs, we bring our booth and our best recipes wherever the crowd gathers.</p>
+        </div>
+        <div class="offering-card">
+          <div class="offering-icon">📖</div>
+          <h3>Family Recipes</h3>
+          <p>Our owner is a published cookbook author. Every recipe has been tested, refined, and passed down with love.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- MENU TEASER -->
+  <section class="menu-teaser" id="menu">
+    <div class="menu-teaser-inner">
+      <div class="menu-teaser-header">
+        <p class="section-label">The menu</p>
+        <h2 class="section-heading">Something for <em>everyone.</em></h2>
+        <p class="section-sub">Sweet indulgence, savory satisfaction, or a trip around the world — our menu has a waffle for every craving.</p>
+      </div>
+      <div class="menu-cols">
+        <div>
+          <p class="menu-col-label">Sweet</p>
+          <div class="menu-item">
+            <p class="menu-item-name">Apple Bliss</p>
+            <p class="menu-item-desc">Brown butter, cinnamon, sugar crumble</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Banana Foster</p>
+            <p class="menu-item-desc">Caramelized banana, vanilla cream, cherry</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Cinnamon Roll</p>
+            <p class="menu-item-desc">Cream cheese flore drizzle</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Pumpkin Spice</p>
+            <p class="menu-item-desc">Cream cheese flore drizzle</p>
+          </div>
+        </div>
+        <div>
+          <p class="menu-col-label">Savory</p>
+          <div class="menu-item">
+            <p class="menu-item-name">Honey BLAT</p>
+            <p class="menu-item-desc">Bacon, egg &amp; cheese on a YAAT waffle with peach chutney</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Fried Chicken</p>
+            <p class="menu-item-desc">YAAT waffle, spicy mustard dipping sauce</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Mac &amp; Cheese</p>
+            <p class="menu-item-desc">Spicy mushroom, brown sugar pecan praline chutney</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">Vegetarian</p>
+            <p class="menu-item-desc">Ask us about today's seasonal special</p>
+          </div>
+        </div>
+        <div>
+          <p class="menu-col-label">International</p>
+          <div class="menu-item">
+            <p class="menu-item-name">The Bubble</p>
+            <p class="menu-item-desc">Hong Kong style with condensed milk &amp; chocolate drizzle</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">The Italian</p>
+            <p class="menu-item-desc">Savory herbs, garlic &amp; sundried tomato with a cheese dipping sauce</p>
+          </div>
+          <div class="menu-item">
+            <p class="menu-item-name">The Belgian Experience</p>
+            <p class="menu-item-desc">Liège style with chocolate sauce &amp; fresh strawberries</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-cta">
+        <a href="menu.html" class="btn-primary">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FIND US -->
+  <section class="find-us" id="find-us">
+    <div class="find-us-inner">
+      <div class="find-us-header">
+        <p class="section-label">Find us</p>
+        <h2 class="section-heading">Catch us this <em>weekend.</em></h2>
+        <p class="section-sub">We rotate markets and festivals throughout the season. Here's where you can find us next.</p>
+      </div>
+      <div class="markets-grid">
+        <div class="market-card">
+          <p class="market-card-day">Saturday</p>
+          <h3>Downtown Farmers Market</h3>
+          <p>8am – 1pm · Main Street Plaza</p>
+        </div>
+        <div class="market-card">
+          <p class="market-card-day">Sunday</p>
+          <h3>Riverside Weekend Market</h3>
+          <p>9am – 2pm · Riverside Park</p>
+        </div>
+        <div class="market-card">
+          <p class="market-card-day">Coming Up</p>
+          <h3>Summer Food Festival</h3>
+          <p>July 12–13 · Fairgrounds</p>
+        </div>
+        <div class="market-card">
+          <p class="market-card-day">Monthly</p>
+          <h3>Night Market</h3>
+          <p>First Friday · Arts District</p>
+        </div>
+      </div>
+      <p class="find-us-note">
+        Follow us on <a href="#">Instagram</a> for real-time updates and this week's seasonal specials before you arrive.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-img">
+        <!-- Replace src with real photo -->
+        🧇
+      </div>
+      <div class="about-text">
+        <p class="section-label">Our story</p>
+        <h2 class="section-heading">More than food.<br><em>It's therapy.</em></h2>
+        <p>Our owner isn't just a passionate foodie — she's the author of multiple family cookbooks. Every waffle on our menu has been meticulously thought out, rigorously tested, and executed to perfection.</p>
+        <p>We believe waffles are a canvas for culinary art coupled with emotional therapy. We pour love and culinary expertise into every waffle, aiming to transport you back to that special place or feeling from your very first bite.</p>
+        <a href="story.html" class="text-link">Read her full story →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT CTA -->
+  <section class="contact-cta" id="contact">
+    <div class="contact-cta-inner">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-heading">Want us at your <em>event?</em></h2>
+      <p class="section-sub">Interested in booking us for a festival, market, or private event? We'd love to hear from you.</p>
+      <div class="contact-cta-actions">
+        <a href="mailto:hello@thefluffywaffle.com" class="btn-primary">Send Us a Message</a>
+        <a href="#find-us" class="btn-ghost">Find Us First</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">The Fluffy <em>Waffle</em></div>
+          <p class="footer-tagline">Waffles are a labor of love.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#find-us">Find Us</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2025 The Fluffy Waffle LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
