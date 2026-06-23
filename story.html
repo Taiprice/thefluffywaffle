@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — The Fluffy Waffle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FFFDF8;
+      --linen:    #F5EDD8;
+      --walnut:   #3B2007;
+      --amber:    #BC9C2F;
+      --amber-lt: #F5C842;
+      --muted:    #6B5B45;
+      --white:    #FFFFFF;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; background: #FFFDF8 !important; }
+
+    body {
+      background: #FFFDF8 !important;
+      color: var(--walnut);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+    }
+
+    .nav-logo em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--walnut); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--walnut);
+      border-radius: 2px;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--walnut);
+      padding: 6rem 5% 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--linen), var(--amber), var(--amber-lt), var(--amber), var(--linen));
+    }
+
+    .page-hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      max-width: 16ch;
+      margin: 0 auto 1.25rem;
+    }
+
+    .page-hero h1 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .page-hero p {
+      font-size: 1.0625rem;
+      color: rgba(255, 253, 248, 0.65);
+      max-width: 44ch;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── STORY LAYOUT ── */
+    .story-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 5%;
+    }
+
+    /* Portrait + intro */
+    .story-intro {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+
+    .portrait {
+      position: sticky;
+      top: 90px;
+    }
+
+    .portrait-img {
+      background: var(--linen);
+      border-radius: 20px;
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .portrait-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .portrait-caption {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.25rem;
+    }
+
+    .portrait-caption em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .portrait-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Story text column */
+    .story-text .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .story-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--walnut);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .story-text h2 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    /* Chapter blocks */
+    .chapter {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--linen);
+    }
+
+    .chapter:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .chapter-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .chapter h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.85rem;
+      line-height: 1.3;
+    }
+
+    .chapter p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    /* ── COOKBOOKS CALLOUT ── */
+    .cookbooks {
+      background: var(--linen);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 5rem 0;
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .cookbooks-icon {
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+
+    .cookbooks h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.5rem;
+    }
+
+    .cookbooks h3 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .cookbooks p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── CLOSING QUOTE ── */
+    .closing-quote {
+      background: var(--walnut);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .closing-quote blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--cream);
+      max-width: 22ch;
+      margin: 0 auto 1.5rem;
+      line-height: 1.3;
+    }
+
+    .closing-quote blockquote em {
+      color: var(--amber);
+    }
+
+    .closing-quote cite {
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.5);
+      font-style: normal;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      background: var(--cream);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .cta-strip h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-strip h2 em {
+      color: var(--amber);
+      font-style: italic;
+    }
+
+    .cta-strip p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--white);
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--walnut);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border: 1.5px solid var(--amber);
+      color: var(--amber);
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-ghost:hover {
+      background: var(--amber);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--walnut);
+      color: rgba(255, 253, 248, 0.6);
+      padding: 3rem 5%;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .footer-logo em {
+      color: var(--amber-lt);
+      font-style: italic;
+    }
+
+    .footer-tagline {
+      font-size: 0.8125rem;
+      margin-top: 0.35rem;
+      color: rgba(255, 253, 248, 0.45);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.6);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber-lt); }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-socials a {
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.5);
+      border: 1px solid rgba(255, 253, 248, 0.15);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-socials a:hover {
+      color: var(--amber-lt);
+      border-color: var(--amber-lt);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 253, 248, 0.1);
+      padding-top: 1.5rem;
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .story-intro {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .portrait {
+        position: static;
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .portrait-img {
+        aspect-ratio: 1/1;
+        font-size: 4rem;
+        margin-bottom: 0;
+      }
+
+      .cookbooks {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--linen);
+        padding: 1.5rem 5%;
+        gap: 1.25rem;
+        z-index: 99;
+      }
+
+      .portrait {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-img {
+        aspect-ratio: 3/2;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">The Fluffy <em>Waffle</em></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#menu">Menu</a></li>
+      <li><a href="index.html#find-us">Find Us</a></li>
+      <li><a href="story.html" style="color: var(--amber);">Our Story</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">The woman behind the waffle</p>
+    <h1>Good food is <em>therapy.</em></h1>
+    <p>The story of how a lifelong love of feeding people led to a waffle iron, a farmers market booth, and a whole lot of joy.</p>
+  </div>
+
+  <!-- STORY -->
+  <div class="story-wrapper">
+    <div class="story-intro">
+
+      <!-- Portrait -->
+      <div class="portrait">
+        <div class="portrait-img">
+          <!-- Replace with: <img src="images/michelle.jpg" alt="Michelle, founder of The Fluffy Waffle" /> -->
+          👩🏽‍🍳
+        </div>
+        <div>
+          <p class="portrait-caption">Michelle</p>
+          <p class="portrait-sub">Founder &amp; Head Waffle Maker</p>
+        </div>
+      </div>
+
+      <!-- Chapters -->
+      <div class="story-text">
+        <p class="section-label">Her story</p>
+        <h2>From chocolate chip cookies<br>to <em>culinary obsession.</em></h2>
+
+        <div class="chapter">
+          <p class="chapter-label">The beginning</p>
+          <h3>People love dessert.</h3>
+          <p>Michelle's obsession with the culinary world began in her early twenties during college with a simple discovery: people love dessert. Her earliest attempts involved chocolate chip cookies as well as peanut butter cookies, but it was the joy on people's faces as they devoured them that truly sparked her culinary ambition.</p>
+        </div>
+
+        <div class="chapter">
+          <p class="chapter-label">The spark becomes a flame</p>
+          <h3>A self-taught culinary education.</h3>
+          <p>When the Food Network debuted, a spark became a flame. As a self-taught cook, Michelle used television and a growing collection of cookbooks as her culinary academy, constantly experimenting with advanced techniques and unfamiliar ingredients. By her late twenties, she had officially taken the reins of the family's annual Thanksgiving feast — ambitiously preparing the turkey and every single side from scratch.</p>
+        </div>
+
+        <div class="chapter">
+          <p class="chapter-label">Preserving the past</p>
+          <h3>Recipes lost to time.</h3>
+          <p>As her own family grew, Michelle felt a deep pull toward her roots. She set out to uncover old family recipes, only to find a heartbreaking reality: many were lost to time, scribbled on fading 3x5 index cards, or buried with generations who had passed on. Determined to safeguard these culinary secrets for the future, she began recreating them and compiling them into cookbooks. Today, she has created six distinct editions — including a specialized collection for camping and another dedicated entirely to waffles.</p>
+        </div>
+
+        <div class="chapter">
+          <p class="chapter-label">A lifelong foodie</p>
+          <h3>Every Michelin star. Every James Beard table.</h3>
+          <p>Driven by a love for exceptional food, Michelle and her husband have spent years exploring every Michelin-starred, James Beard-recognized, and critically acclaimed restaurant in the local area. A proud, lifelong foodie, she constantly seeks out fine gastronomic adventures for inspiration.</p>
+        </div>
+
+        <div class="chapter">
+          <p class="chapter-label">The missing piece</p>
+          <h3>It was right in front of her all along.</h3>
+          <p>While she frequently dreamed of launching a brick-and-mortar restaurant or a food truck, the timing and logistics never quite aligned. The missing piece of the puzzle finally clicked during a weekend stroll through a local community market. Surrounded by the energy of local vendors and food lovers, she realized the perfect venue had been right in front of her all along. She created a website and an Instagram account — and just like that, the story continued... good food is therapy.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookbooks callout -->
+    <div class="cookbooks">
+      <div class="cookbooks-icon">📚</div>
+      <div>
+        <h3>Six cookbooks and <em>counting.</em></h3>
+        <p>Michelle has authored six distinct cookbook editions, preserving family recipes for future generations. Her collection includes a specialized camping cookbook and a volume dedicated entirely to waffles — the same recipes that inspired The Fluffy Waffle.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING QUOTE -->
+  <div class="closing-quote">
+    <blockquote>"Good food is <em>therapy.</em>"</blockquote>
+    <cite>— Michelle, Founder of The Fluffy Waffle</cite>
+  </div>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <h2>Come taste the <em>difference.</em></h2>
+    <p>Find us at a market near you this weekend and experience a waffle made with love.</p>
+    <div class="cta-actions">
+      <a href="index.html#find-us" class="btn-primary">Find Us This Weekend</a>
+      <a href="index.html#menu" class="btn-ghost">See the Menu</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">The Fluffy <em>Waffle</em></div>
+          <p class="footer-tagline">Waffles are a labor of love.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html#menu">Menu</a></li>
+          <li><a href="index.html#find-us">Find Us</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2025 The Fluffy Waffle LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
