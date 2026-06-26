@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get in Touch — The Fluffy Waffle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FFFDF8;
+      --linen:    #F5EDD8;
+      --walnut:   #3B2007;
+      --amber:    #BC9C2F;
+      --amber-lt: #F5C842;
+      --muted:    #6B5B45;
+      --white:    #FFFFFF;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; background: #FFFDF8 !important; color-scheme: only light; }
+
+    body {
+      background: #FFFDF8 !important;
+      color: var(--walnut);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--walnut);
+    }
+
+    .nav-logo em { color: var(--amber); font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--walnut); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--walnut);
+      border-radius: 2px;
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--walnut);
+      padding: 6rem 5% 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--linen), var(--amber), var(--amber-lt), var(--amber), var(--linen));
+    }
+
+    .page-hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin: 0 auto 1.25rem;
+    }
+
+    .page-hero h1 em { color: var(--amber); font-style: italic; }
+
+    .page-hero p {
+      font-size: 1.0625rem;
+      color: rgba(255, 253, 248, 0.65);
+      max-width: 44ch;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .contact-info .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+      font-weight: 700;
+      color: var(--walnut);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info h2 em { color: var(--amber); font-style: italic; }
+
+    .contact-info > p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-detail-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .contact-detail-text p:first-child {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail-text p:last-child {
+      font-size: 0.9375rem;
+      color: var(--walnut);
+      font-weight: 500;
+    }
+
+    .contact-detail-text a {
+      color: var(--walnut);
+      transition: color 0.2s;
+    }
+
+    .contact-detail-text a:hover { color: var(--amber); }
+
+    /* Socials */
+    .socials-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .socials-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid var(--linen);
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ── RIGHT COLUMN — FORM ── */
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--linen);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .contact-form-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form-wrap h3 em { color: var(--amber); font-style: italic; }
+
+    .contact-form-wrap > p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--walnut);
+      margin-bottom: 0.4rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 1.5px solid var(--linen);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9375rem;
+      font-family: var(--font-body);
+      color: var(--walnut);
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder { color: #B0A090; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--amber);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5B45' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      border-radius: 999px;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--walnut);
+      transform: translateY(-1px);
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--walnut);
+      color: rgba(255, 253, 248, 0.6);
+      padding: 3rem 5%;
+      border-top: 1px solid rgba(255,253,248,0.08);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .footer-logo em { color: var(--amber-lt); font-style: italic; }
+
+    .footer-tagline {
+      font-size: 0.8125rem;
+      margin-top: 0.35rem;
+      color: rgba(255, 253, 248, 0.45);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255, 253, 248, 0.6);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber-lt); }
+
+    .footer-socials { display: flex; gap: 1rem; }
+
+    .footer-socials a {
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.5);
+      border: 1px solid rgba(255, 253, 248, 0.15);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--amber-lt); border-color: var(--amber-lt); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 253, 248, 0.1);
+      padding-top: 1.5rem;
+      font-size: 0.8125rem;
+      color: rgba(255, 253, 248, 0.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--linen);
+        padding: 1.5rem 5%;
+        gap: 1.25rem;
+        z-index: 99;
+      }
+
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 1.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">The Fluffy <em>Waffle</em></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="find-us.html">Find Us</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="contact.html" class="nav-cta" style="background: var(--walnut);">Get in Touch</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.getElementById('nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">We'd love to hear from you</p>
+    <h1>Get in <em>touch.</em></h1>
+    <p>Questions, bookings, wholesale inquiries — send us a message and we'll get back to you soon.</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="contact-wrapper">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info">
+      <p class="section-label">Contact</p>
+      <h2>Let's talk <em>waffles.</em></h2>
+      <p>Whether you're interested in booking us for a private event, have a question about the menu, or just want to say hello — we're here for it.</p>
+
+      <div class="contact-details">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <p>Email</p>
+            <p><a href="mailto:hello@thefluffywaffle.com">hello@thefluffywaffle.com</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <p>Location</p>
+            <p>Add your city / service area here</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">⏰</div>
+          <div class="contact-detail-text">
+            <p>Response Time</p>
+            <p>We typically reply within 24–48 hours</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="socials-label">Follow along</p>
+      <div class="socials-row">
+        <a href="#" class="social-btn">📷 Instagram</a>
+        <a href="#" class="social-btn">🎵 TikTok</a>
+        <a href="#" class="social-btn">👍 Facebook</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap">
+      <h3>Send us a <em>message.</em></h3>
+      <p>Fill out the form below and we'll be in touch shortly.</p>
+
+      <div id="contact-form">
+        <div class="form-row">
+          <div>
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" placeholder="Jane" />
+          </div>
+          <div>
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">What's this about?</label>
+          <select id="subject">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="general">General inquiry</option>
+            <option value="booking">Event booking</option>
+            <option value="wholesale">Wholesale / partnership</option>
+            <option value="feedback">Feedback</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us what's on your mind..."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="handleSubmit()">Send Message</button>
+      </div>
+
+      <!-- Success message -->
+      <div class="form-success" id="form-success">
+        <div class="form-success-icon">🧇</div>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out. We'll get back to you within 24–48 hours.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">The Fluffy <em>Waffle</em></div>
+          <p class="footer-tagline">Waffles are a labor of love.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="find-us.html">Find Us</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="footer-socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">Facebook</a>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2025 The Fluffy Waffle LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit() {
+      const first = document.getElementById('first-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!first || !email || !message) {
+        alert('Please fill in your name, email, and message before sending.');
+        return;
+      }
+
+      // TODO: wire up Resend here
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
