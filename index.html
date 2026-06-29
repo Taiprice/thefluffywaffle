@@ -231,7 +231,7 @@
     .hero-strip { display: none; }
 
     /* ── SHARED ── */
-    section { padding: 6rem 5%; }
+    section { padding: 3rem 5%; }
 
     .section-label {
       font-size: 0.75rem;
@@ -272,9 +272,30 @@
 
     .divider {
       border: none;
-      border-top: 1px solid var(--linen);
-      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 0 5%;
     }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      display: block;
+      width: 200px;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.5;
+    }
+
+    .divider::after {
+      content: '';
+    }
+
+    
 
     /* ── OFFERINGS ── */
     .offerings { background: var(--white); }
@@ -519,7 +540,7 @@
         z-index: 99;
       }
 
-      section { padding: 4rem 5%; }
+      section { padding: 2rem 5%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -559,7 +580,7 @@
     <div class="hero-strip"></div>
   </section>
 
-  <hr class="divider" />
+  
 
   <!-- OFFERINGS -->
   <section class="offerings">
@@ -592,7 +613,7 @@
     </div>
   </section>
 
-  <hr class="divider" />
+  
 
   <!-- MENU TEASER -->
   <section class="menu-teaser" id="menu">
@@ -628,7 +649,7 @@
     </div>
   </section>
 
-  <hr class="divider" />
+  
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -643,7 +664,7 @@
     </div>
   </section>
 
-  <hr class="divider" />
+  
 
   <!-- CONTACT CTA -->
   <section class="contact-cta" id="contact">
