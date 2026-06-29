@@ -297,50 +297,125 @@
 
     
 
-    /* ── OFFERINGS ── */
-    .offerings { background: var(--white); }
+    /* ── CAROUSEL ── */
+    .carousel-section { background: var(--white); }
 
-    .offerings-inner { max-width: 900px; margin: 0 auto; }
+    .carousel-inner { max-width: 900px; margin: 0 auto; }
 
-    .offerings-header { margin-bottom: 3rem; }
+    .carousel-header { margin-bottom: 2.5rem; }
 
-    .offerings-list { display: flex; flex-direction: column; gap: 0; }
+    .carousel-track-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+    }
 
-    .offering-row {
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .carousel-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--linen);
       display: flex;
       align-items: center;
-      gap: 2rem;
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--linen);
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+      border-radius: 18px 18px 0 0;
+      border: 2px dashed var(--amber);
     }
 
-    .offering-row:first-child { border-top: 1px solid var(--linen); }
-
-    .offering-num {
-      font-family: var(--font-display);
+    .carousel-img-placeholder .placeholder-icon {
       font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--linen);
-      min-width: 3rem;
-      line-height: 1;
+      opacity: 0.5;
     }
 
-    .offering-icon { font-size: 1.75rem; flex-shrink: 0; }
+    .carousel-img-placeholder .placeholder-text {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
 
-    .offering-row h3 {
+    .carousel-caption {
+      background: var(--cream);
+      border-radius: 0 0 18px 18px;
+      padding: 1.25rem 1.75rem 1.5rem;
+      border: 1px solid var(--linen);
+      border-top: none;
+    }
+
+    .carousel-caption-title {
       font-family: var(--font-display);
       font-size: 1.125rem;
       font-weight: 700;
       color: var(--walnut);
       margin-bottom: 0.25rem;
-      min-width: 180px;
     }
 
-    .offering-row p {
-      font-size: 0.9375rem;
+    .carousel-caption-desc {
+      font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.65;
-      flex: 1;
+      line-height: 1.6;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .carousel-btn {
+      background: none;
+      border: 1.5px solid var(--linen);
+      border-radius: 999px;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--walnut);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .carousel-btn:hover {
+      border-color: var(--amber);
+      background: var(--amber);
+      color: var(--white);
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--linen);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, width 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--amber);
+      width: 24px;
     }
 
     /* ── MENU TEASER ── */
@@ -582,33 +657,77 @@
 
   
 
-  <!-- OFFERINGS -->
-  <section class="offerings">
-    <div class="offerings-inner">
-      <div class="offerings-header">
-        <h2 class="section-heading">What we do</h2>
-        <h3 class="section-main-heading">Come taste the <em>difference.</em></h3>
-        <p class="section-sub">Every waffle is made to order, with ingredients sourced fresh and flavor combinations tested to perfection.</p>
+  <!-- CAROUSEL -->
+  <section class="carousel-section">
+    <div class="carousel-inner">
+      <div class="carousel-header">
+        <h2 class="section-heading">Gallery</h2>
+        <h3 class="section-main-heading">Fresh from the <em>market.</em></h3>
       </div>
-      <div class="offerings-list">
-        <div class="offering-row">
-          <span class="offering-num">01</span>
-          <div class="offering-icon">🌾</div>
-          <h3>Farmers Markets</h3>
-          <p>Find us at local markets every weekend, serving up fresh waffles made to order right in front of you.</p>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-slide">
+            <div class="carousel-img-placeholder">
+              <span class="placeholder-icon">🖼️</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+            <div class="carousel-caption">
+              <p class="carousel-caption-title">Photo Title Goes Here</p>
+              <p class="carousel-caption-desc">Add a caption describing this photo — a moment, a dish, or an event.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-img-placeholder">
+              <span class="placeholder-icon">🖼️</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+            <div class="carousel-caption">
+              <p class="carousel-caption-title">Photo Title Goes Here</p>
+              <p class="carousel-caption-desc">Add a caption describing this photo — a moment, a dish, or an event.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-img-placeholder">
+              <span class="placeholder-icon">🖼️</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+            <div class="carousel-caption">
+              <p class="carousel-caption-title">Photo Title Goes Here</p>
+              <p class="carousel-caption-desc">Add a caption describing this photo — a moment, a dish, or an event.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-img-placeholder">
+              <span class="placeholder-icon">🖼️</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+            <div class="carousel-caption">
+              <p class="carousel-caption-title">Photo Title Goes Here</p>
+              <p class="carousel-caption-desc">Add a caption describing this photo — a moment, a dish, or an event.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-img-placeholder">
+              <span class="placeholder-icon">🖼️</span>
+              <span class="placeholder-text">Add your photo here</span>
+            </div>
+            <div class="carousel-caption">
+              <p class="carousel-caption-title">Photo Title Goes Here</p>
+              <p class="carousel-caption-desc">Add a caption describing this photo — a moment, a dish, or an event.</p>
+            </div>
+          </div>
+
         </div>
-        <div class="offering-row">
-          <span class="offering-num">02</span>
-          <div class="offering-icon">🎪</div>
-          <h3>Festivals &amp; Events</h3>
-          <p>From food festivals to community fairs, we bring our booth and our best recipes wherever the crowd gathers.</p>
-        </div>
-        <div class="offering-row">
-          <span class="offering-num">03</span>
-          <div class="offering-icon">📖</div>
-          <h3>Family Recipes</h3>
-          <p>Our owner is a published cookbook author. Every recipe has been tested, refined, and passed down with love.</p>
-        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </section>
@@ -702,6 +821,54 @@
       <p class="footer-bottom">© 2026 The Fluffy Waffle LLC. All rights reserved.</p>
     </div>
   </footer>
+
+
+  <script>
+    (function() {
+      var track = document.getElementById('carouselTrack');
+      var slides = track.querySelectorAll('.carousel-slide');
+      var dotsContainer = document.getElementById('carouselDots');
+      var current = 0;
+      var total = slides.length;
+      var autoTimer;
+
+      // Build dots
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+        resetTimer();
+      }
+
+      function resetTimer() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(function() { goTo(current + 1); }, 4500);
+      }
+
+      document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+      document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+      // Touch/swipe support
+      var startX = 0;
+      track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+      track.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      }, {passive: true});
+
+      resetTimer();
+    })();
+  </script>
 
 </body>
 </html>
