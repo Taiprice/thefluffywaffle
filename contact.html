@@ -67,6 +67,43 @@
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: all 0.3s; }
 
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--walnut);
+      padding: 6rem 5% 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin: 0 auto 1.25rem;
+    }
+
+    .page-hero h1 em { color: var(--amber); font-style: italic; }
+
+    .page-hero p {
+      font-size: 1.0625rem;
+      color: rgba(255, 253, 248, 0.65);
+      max-width: 44ch;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
     /* ── FORM-ONLY MAIN ── */
     main {
       flex: 1;
@@ -286,6 +323,13 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">We'd love to hear from you</p>
+    <h1>Get in <em>touch.</em></h1>
+    <p>Questions, bookings, wholesale inquiries — send us a message and we'll get back to you soon.</p>
+  </div>
 
   <!-- FORM ONLY -->
   <main>
